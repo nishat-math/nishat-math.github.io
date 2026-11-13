@@ -1,0 +1,3 @@
+{ "name": "গণিতের গ্রাম", "short_name": "গণিতের গ্রাম", "start_url": "./", "display": "standalone",
+  "background_color": "#dff1ff", "theme_color": "#ffb627", "lang": "bn",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }] }
