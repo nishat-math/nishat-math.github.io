@@ -5,9 +5,9 @@
   const { bn, emo, pv, pvTable, ladder, pole, scale } = window.V;
 
   // ---------- small helpers ----------
-  const jar = (n, e) => `<div class="jar">${emo(e || '🍬', 28, n)}</div>`;
-  const basket = (n, e) => `<div class="basket">${emo(e, 30, n)}</div>`;
-  const pile = (n, e, sz) => `<div class="pile">${emo(e, sz || 34, n)}</div>`;
+  const jar = (n, e) => `<div class="jar">${emo(e || '🍬', 38, n)}</div>`;
+  const basket = (n, e) => `<div class="basket">${emo(e, 42, n)}</div>`;
+  const pile = (n, e, sz) => `<div class="pile">${emo(e, sz || 48, n)}</div>`;
   const big = (e, sz) => emo(e, sz);
   const TIP_MORE = ['দুটি ছবির দিকে ভালো করে তাকাও। কোনটিতে জিনিস বেশি দেখা যাচ্ছে?', 'একটি একটি করে আঙুল রেখে গোনো। যেটি গুনতে বেশি সময় লাগে, সেখানে বেশি।'];
   const TIP_LESS = ['কম মানে অল্প। কোনটিতে জিনিস অল্প আছে?', 'দুটি সারি পাশাপাশি মেলাও। যার জিনিস আগে শেষ হয়ে যায়, সেখানে কম।'];
