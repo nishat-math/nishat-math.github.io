@@ -292,20 +292,20 @@
   const CHAPTERS = [
     ch1,
     { id: 2, title: 'গুনে মিলাই', sub: 'আঙুল, কাঠি ও ছবি গণনা', icon: '✋' },
-    { id: 3, title: 'সংখ্যা ১-১০', sub: 'চিনি, পড়ি, লিখি, শূন্য, ক্রম', icon: '🔢' },
+    { id: 3, title: 'সংখ্যা ১-১০', sub: 'চিনি, পড়ি, লিখি, শূন্য, ক্রম', icon: '<span class="bnic">১২৩</span>' },
     { id: 4, title: 'যোগ', sub: 'একসাথে করা, বৃদ্ধি, কথার অংক', icon: '➕' },
     { id: 5, title: 'বিয়োগ', sub: 'কত বাকি, কম-বেশি, পার্থক্য', icon: '➖' },
-    { id: 6, title: 'সংখ্যা ১১-২০', sub: 'দশ আর আরও কিছু', icon: '🔟' },
+    { id: 6, title: 'সংখ্যা ১১-২০', sub: 'দশ আর আরও কিছু', icon: '<span class="bnic">১০</span>' },
     { id: 7, title: 'যোগ (১১ থেকে ২০)', sub: '', icon: '➕' },
     { id: 8, title: 'বিয়োগ (১১-২০)', sub: '', icon: '➖' },
-    { id: 9, title: 'সংখ্যা ২১-৪০', sub: 'সংখ্যা কথায় লিখি', icon: '🔢' },
+    { id: 9, title: 'সংখ্যা ২১-৪০', sub: 'সংখ্যা কথায় লিখি', icon: '<span class="bnic">২১</span>' },
     ch10,
     { id: 12, title: 'জ্যামিতি', sub: 'আকৃতি চিনি', icon: '🔺' },
     { id: 13, title: 'প্যাটার্ন', sub: 'নকশা খুঁজি', icon: '🔁' },
-    { id: 14, title: 'সংখ্যা ৪১-১০০', sub: '', icon: '💯' },
+    { id: 14, title: 'সংখ্যা ৪১-১০০', sub: '', icon: '<span class="bnic">১০০</span>' },
     { id: 15, title: 'উপরে নিচে যোগ', sub: '', icon: '➕' },
     { id: 16, title: 'উপরে নিচে বিয়োগ', sub: '', icon: '➖' },
-    { id: 17, title: 'বাংলাদেশী মুদ্রা', sub: 'টাকা ও পয়সা', icon: '💵' }
+    { id: 17, title: 'বাংলাদেশী মুদ্রা', sub: 'টাকা ও পয়সা', icon: '<span class="bnic">৳</span>' }
   ];
   window.CHAPTERS = CHAPTERS;
 })();

@@ -411,3 +411,5 @@ body { background: #9fdcff; }
 .field input, .field select { border: 2px solid #e3eaf3; }
 .opt { background: #eef5fc; }
 .topbar .iconbtn, .topbar .btn.ghost { background: #eef5fc; }
+.bnic { font-size: 32px; line-height: 1; color: #2a3557; font-weight: 700; white-space: nowrap; }
+h2 .bnic { font-size: 1em; color: var(--lilac-deep); }
