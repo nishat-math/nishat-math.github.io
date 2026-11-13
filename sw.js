@@ -1,4 +1,4 @@
-const C = 'gonit-gram-v3';
+const C = 'gonit-gram-v4';
 const FILES = ['./', 'index.html', 'css/style.css', 'js/config.js', 'js/icons-twemoji.js', 'js/visuals.js', 'js/content.js', 'js/content2.js', 'js/app.js', 'fonts/kalpurush.woff2', 'icon.svg', 'manifest.json'];
 self.addEventListener('install', e => e.waitUntil(caches.open(C).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));

@@ -212,20 +212,20 @@
   function scenery() {
     if (document.getElementById('scenery')) return;
     const cloud = (x, y, k, cls) => `<g class="${cls}"><g transform="translate(${x} ${y}) scale(${k})" fill="#fff"><circle cx="0" cy="10" r="16"/><circle cx="20" cy="0" r="22"/><circle cx="44" cy="8" r="17"/><rect x="-16" y="10" width="76" height="16" rx="8"/></g></g>`;
-    const hut = (x, y, k, roof) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="-26" y="0" width="52" height="34" fill="#e0b07a" stroke="#2a3557" stroke-width="2.5"/><rect x="-7" y="12" width="14" height="22" fill="#8a5a2b"/><path d="M-36 2 L0 -28 L36 2 Z" fill="${roof}" stroke="#2a3557" stroke-width="2.5" stroke-linejoin="round"/></g>`;
+    const hut = (x, y, k, roof) => `<g transform="translate(${x} ${y}) scale(${k})"><rect x="-26" y="0" width="52" height="34" fill="#e0b07a"/><rect x="-7" y="12" width="14" height="22" fill="#8a5a2b"/><path d="M-36 2 L0 -28 L36 2 Z" fill="${roof}"/></g>`;
     const palm = (x, y, k) => `<g transform="translate(${x} ${y}) scale(${k})"><path d="M0 0 Q4 -40 2 -78" stroke="#8a5a2b" stroke-width="7" fill="none"/><g fill="#2e9e5b" stroke="#1d6b3c" stroke-width="1.5"><path d="M2 -78 Q-30 -92 -48 -70 Q-24 -80 2 -74Z"/><path d="M2 -78 Q34 -94 50 -70 Q26 -82 2 -74Z"/><path d="M2 -78 Q-14 -106 -34 -104 Q-12 -96 2 -76Z"/><path d="M2 -78 Q20 -108 40 -102 Q16 -96 2 -76Z"/></g></g>`;
     const d = document.createElement('div'); d.id = 'scenery'; d.setAttribute('aria-hidden', 'true');
     d.innerHTML = `<svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
       <rect width="400" height="800" fill="#9fdcff"/>
       <g class="sunface"><g stroke="#ffb627" stroke-width="5" stroke-linecap="round">${Array.from({ length: 10 }, (_, i) => { const a = i * Math.PI / 5; return `<line x1="${330 + Math.cos(a) * 52}" y1="${105 + Math.sin(a) * 52}" x2="${330 + Math.cos(a) * 66}" y2="${105 + Math.sin(a) * 66}"/>`; }).join('')}</g>
-        <circle cx="330" cy="105" r="44" fill="#ffd84d" stroke="#2a3557" stroke-width="3"/><circle cx="316" cy="98" r="4.5" fill="#2a3557"/><circle cx="344" cy="98" r="4.5" fill="#2a3557"/><circle cx="308" cy="114" r="6" fill="#ff9d8a" opacity=".7"/><circle cx="352" cy="114" r="6" fill="#ff9d8a" opacity=".7"/><path d="M316 116 Q330 130 344 116" stroke="#2a3557" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>
+        <circle cx="330" cy="105" r="44" fill="#ffd84d"/><circle cx="316" cy="98" r="4.5" fill="#2a3557"/><circle cx="344" cy="98" r="4.5" fill="#2a3557"/><circle cx="308" cy="114" r="6" fill="#ff9d8a" opacity=".7"/><circle cx="352" cy="114" r="6" fill="#ff9d8a" opacity=".7"/><path d="M316 116 Q330 130 344 116" fill="none" stroke-linecap="round"/></g>
       ${cloud(30, 70, 1, 'drift')}${cloud(150, 170, .8, 'drift2')}${cloud(-40, 250, .65, 'drift')}
-      <path d="M0 560 Q90 500 190 540 Q290 490 400 530 L400 800 L0 800Z" fill="#a6dd84" stroke="#2a3557" stroke-width="3"/>
+      <path d="M0 560 Q90 500 190 540 Q290 490 400 530 L400 800 L0 800Z" fill="#a6dd84"/>
       <path d="M0 600 Q110 570 220 600 Q320 580 400 596 L400 800 L0 800Z" fill="#86cc63"/>
       ${palm(40, 600, 1)}${hut(120, 590, 1, '#c97b3d')}${hut(300, 585, .9, '#d9534f')}${palm(370, 596, .85)}${palm(220, 598, .7)}
-      <path d="M0 668 Q100 650 200 672 Q300 694 400 666 L400 704 Q300 730 200 708 Q100 688 0 706Z" fill="#6cc4ee" stroke="#2a3557" stroke-width="3"/>
+      <path d="M0 668 Q100 650 200 672 Q300 694 400 666 L400 704 Q300 730 200 708 Q100 688 0 706Z" fill="#6cc4ee"/>
       <path d="M40 684 q10 -6 20 0 M150 690 q10 -6 20 0 M270 700 q10 -6 20 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <path d="M0 724 Q60 708 120 726 Q200 706 280 728 Q340 712 400 724 L400 800 L0 800Z" fill="#5fb04a" stroke="#2a3557" stroke-width="3"/>
+      <path d="M0 724 Q60 708 120 726 Q200 706 280 728 Q340 712 400 724 L400 800 L0 800Z" fill="#5fb04a"/>
       <g stroke="#3f8f35" stroke-width="3" stroke-linecap="round">${Array.from({ length: 14 }, (_, i) => `<path d="M${14 + i * 28} 770 l-5 -14 M${14 + i * 28} 770 l0 -17 M${14 + i * 28} 770 l5 -14"/>`).join('')}</g>
     </svg>`;
     document.body.insertBefore(d, document.body.firstChild);

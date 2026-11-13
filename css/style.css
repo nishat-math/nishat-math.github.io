@@ -385,3 +385,29 @@ body { background: #9fdcff; }
 .tile.locked { filter: grayscale(.85); opacity: .75; }
 .tile.locked .ic::after { content: "🔒"; position: absolute; font-size: 28px; top: 54px; right: 22%; }
 .tile.done .ft { background: #fff; }
+
+/* v3: no outlines, shadows only */
+:root { --shade: rgba(42,53,87,.22); }
+.card, .topbar, .dayhead, .daycard, .teach, .btn, .btn.ghost, .iconbtn, .tile, .tile .ic, .sign, .speech, .maphead h2 { border: 0 !important; }
+.opt, .numpad button, .mats button, .ncard { border: 3px solid transparent !important; }
+.opt.right { border-color: var(--leaf) !important; }
+.opt.wrong { border-color: var(--brick) !important; }
+.opt.showme { border: 3px dashed var(--leaf) !important; }
+.card, .topbar, .dayhead, .daycard, .teach { box-shadow: 0 6px 0 var(--shade); }
+.btn, .btn.green, .btn.red, .btn.ghost { box-shadow: 0 6px 0 var(--shade); }
+.btn.small { box-shadow: 0 4px 0 var(--shade); }
+.btn:active { box-shadow: 0 1px 0 var(--shade); }
+.iconbtn { box-shadow: 0 4px 0 var(--shade); }
+.iconbtn:active { box-shadow: 0 1px 0 var(--shade); }
+.tile { box-shadow: 0 7px 0 var(--shade); }
+.tile:active { box-shadow: 0 2px 0 var(--shade); }
+.tile .ic { box-shadow: 0 3px 0 var(--shade); }
+.tile .no { border: 0; box-shadow: 0 2px 0 var(--shade); }
+.sign { box-shadow: 0 8px 0 var(--shade); }
+.speech { box-shadow: 0 4px 0 var(--shade); }
+.speech::after { border-right-color: #fff; }
+.maphead h2 { box-shadow: 0 5px 0 var(--shade); }
+.dots i { border: 0; }
+.field input, .field select { border: 2px solid #e3eaf3; }
+.opt { background: #eef5fc; }
+.topbar .iconbtn, .topbar .btn.ghost { background: #eef5fc; }
