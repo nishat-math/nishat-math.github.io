@@ -422,3 +422,5 @@ h2 .bnic { font-size: 1em; color: var(--lilac-deep); }
 .teach .face .ei:has(svg.person) { height: 190px; width: auto; }
 .feedback .fi .ei:has(svg.person) { height: 90px; width: auto; }
 .feedback { align-items: center; }
+.scenepic { border-radius: var(--r); overflow: hidden; box-shadow: 0 4px 0 var(--shade); background: #fff; line-height: 0; }
+.scenepic svg { width: 100%; height: auto; aspect-ratio: 2 / 1; display: block; }

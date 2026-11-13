@@ -166,7 +166,9 @@
   }
   const addSt = (a, b, s) => ({ ...add(a, b, '|', s, 'কাঠি গুনে যোগফল বের করি।'), vis: two(sticks(a), sticks(b)), rem: () => addSt(b, a, s) });
   const addNL = (a, b, s) => ({ t: 'fill', s: s || '', q: 'সংখ্যারেখায় লাফ দিয়ে যোগ করি।', vis: nline(a, b, a + b > 10 ? 20 : 10), parts: [bn(a), '+', bn(b), '=', { a: a + b }], h: [`হলুদ বিন্দু ${bn(a)} এ আছে। সামনে ${bn(b)}টি লাফ দাও।`, 'সবুজ লাফগুলো গোনো, শেষে কোন সংখ্যায় থামলে?'], ex: `${bn(a)} থেকে ${bn(b)} লাফ দিলে ${bn(a + b)}।`, rem: () => addNL(a - 1 > 0 ? a - 1 : a + 1, b, s) });
-  const addF = (a, b, s) => ({ t: 'fill', s: s || '', q: 'হাতের আঙুল গুনে যোগ করি।', vis: two(`<div class="fing">${bn(a)} আঙুল</div>${emo('✋', 44, a > 5 ? 2 : 1)}`, `<div class="fing">${bn(b)} আঙুল</div>${emo('✋', 44, b > 5 ? 2 : 1)}`), parts: [bn(a), '+', bn(b), '=', { a: a + b }], h: [`এক হাতে ${bn(a)}টি আঙুল তোলো।`, `এবার আরও ${bn(b)}টি আঙুল তোলো। মোট কয়টি আঙুল উঠল?`], ex: `${bn(a)} + ${bn(b)} = ${bn(a + b)}`, rem: () => addF(b, a, s) });
+  const HAND = ['✊', '☝️', '✌️', '🤟', '🖖', '✋'];
+  const hands = n => `<span style="display:inline-flex;gap:2px;flex-wrap:nowrap">${n <= 5 ? emo(HAND[n], 70) : emo('✋', 60) + emo(HAND[n - 5], 60)}</span>`;
+  const addF = (a, b, s) => ({ t: 'fill', s: s || '', q: 'হাতের আঙুল গুনে যোগ করি।', vis: two(`<div class="fing">${bn(a)} আঙুল</div>${hands(a)}`, `<div class="fing">${bn(b)} আঙুল</div>${hands(b)}`), parts: [bn(a), '+', bn(b), '=', { a: a + b }], h: [`এক হাতে ${bn(a)}টি আঙুল তোলো।`, `এবার আরও ${bn(b)}টি আঙুল তোলো। মোট কয়টি আঙুল উঠল?`], ex: `${bn(a)} + ${bn(b)} = ${bn(a + b)}`, rem: () => addF(b, a, s) });
   function sumPick(target, exprs, s) {
     return {
       t: 'pick', s: s || '', q: `কোনটির যোগফল ${bn(target)}?`, cols: exprs.length > 2 ? 3 : 2,
@@ -301,11 +303,11 @@
   // ---------- Chapter 2 ----------
   const ch2 = [
     D('ছবি গুনি, মিল করি', 'চলো ছবি গুনি। প্রতিটি ছবিতে একবার আঙুল রেখে গুনব: এক, দুই, তিন।', pile(3, '🍎'), [
-      numPic(3, '🍎', 'মিনা বাজার থেকে আপেল এনেছে।', 5), count(4, '🐟', 'বাবা পুকুর থেকে মাছ ধরেছেন।'), count(2, '🦆'), stickEq(5, '🍌', 'ঝুড়িতে কলা আছে।'), numPic(1, '🐅', '', 5), count(5, '🍬')]),
+      numPic(3, '🍎', 'মিনা বাজার থেকে আপেল এনেছে।', 5), count(4, '🐟', 'বাবা পুকুর থেকে মাছ ধরেছেন।'), count(2, '🦆'), stickEq(5, '🍌', 'ঝুড়িতে কলা আছে।'), numPic(1, '🐅', '', 5), count(5, '🦋')]),
     D('ছবি গুনি, গোল পূরণ করি', 'গুনে গুনে মিলাই। যতগুলো ছবি, ঠিক ততগুলো কাঠি বা গোল।', pile(4, '🐔'), [
       count(3, '🐔', 'উঠানে মুরগি চরছে।'), numPic(4, '🥭', '', 5), count(5, '🎈', 'জন্মদিনে বেলুন এসেছে।'), stickEq(2, '🐄'), tfCount(4, '🍊', 4), tfCount(3, '🐐', 2)]),
     D(REVIEW, 'চলো যা শিখেছি তা আবার খেলি।', '', [
-      numPic(2, '⚽', '', 5), count(5, '🥕'), stickEq(3, '🥚'), stickEq(4, '🍆'), tfCount(5, '🍬', 4), tfCount(1, '🐘', 1), picNum(3, '🐈', '', 5)])
+      numPic(2, '⚽', '', 5), count(5, '🥕'), stickEq(3, '🥚'), stickEq(4, '🍆'), tfCount(5, '🍪', 4), tfCount(1, '🐘', 1), picNum(3, '🐈', '', 5)])
   ];
 
   // ---------- Chapter 3 ----------
@@ -313,7 +315,7 @@
     D('চিনি ও পড়ি (১-৫)', '১, ২, ৩, ৪, ৫। চলো গুনে গুনে সংখ্যা চিনি।', `<p style="text-align:center">${[1, 2, 3, 4, 5].map(NUM).join(' ')}</p>`, [
       count(1, '🍎'), count(2, '🐟'), picNum(3, '🐕', '', 5), numPic(4, '🍌', '', 5), count(5, '🌽'), tfCount(3, '🥭', 2), tfCount(5, '⚽', 5)]),
     D('সংখ্যার সাথে ছবি মিল করি', 'প্রতিটি সংখ্যার সাথে ঠিক ততগুলো ছবি মিলাই।', pile(4, '🍊'), [
-      numPic(3, '🦆', '', 5), numPic(2, '🐄', '', 5), picNum(4, '🍬', '', 5), picNum(5, '🐔', '', 5), numPic(1, '🐒', '', 5), picNum(3, '🦌', '', 5)]),
+      numPic(3, '🦆', '', 5), numPic(2, '🐄', '', 5), picNum(4, '🚲', '', 5), picNum(5, '🐔', '', 5), numPic(1, '🐒', '', 5), picNum(3, '🦌', '', 5)]),
     D('সংখ্যা ১-৫ গণনা করি, পড়ি ও লিখি', 'গুনি, পড়ি, তারপর সংখ্যা লিখি।', '', [
       picNum(2, '🍎', '', 5), count(3, '🐟'), count(4, '🍅'), count(5, '🥔'), pickN([3, 4], 'small'), pickN([2, 5], 'small')]),
     D('ছবি গুনে খালিঘরে সংখ্যা লিখি', 'সংখ্যা প্রতিবার ১ করে বাড়ে: ১, ২, ৩, ৪, ৫।', '', [
@@ -321,7 +323,7 @@
     D(REVIEW, '১ থেকে ৫ পর্যন্ত যা শিখেছি, চলো আবার খেলি।', '', [
       count(4, '🎈'), seq(1, 5, [3, 4]), nextN(1), nextN(3), prevN(2), prevN(5), between(2), ord([3, 1, 2, 4], 'desc')]),
     D('চিনি ও পড়ি (৬-১০)', '৬, ৭, ৮, ৯, ১০। পাঁচের পরে গুনতে থাকি।', `<p style="text-align:center">${[6, 7, 8, 9, 10].map(NUM).join(' ')}</p>`, [
-      count(6, '🍎'), count(7, '🐟'), picNum(8, '🧅'), numPic(9, '🍬'), count(10, '🥚'), tfCount(7, '🍌', 6), tfCount(8, '⚽', 8)]),
+      count(6, '🍎'), count(7, '🐟'), picNum(8, '🧅'), numPic(9, '🐝'), count(10, '🥚'), tfCount(7, '🍌', 6), tfCount(8, '⚽', 8)]),
     D('সংখ্যার সাথে ছবি মিল করি', 'বড়ো সংখ্যা মানে বেশি ছবি। গুনে মিলাই।', '', [
       numPic(7, '🦆'), numPic(8, '🍊'), picNum(10, '🍒'), picNum(9, '🐔'), picNum(6, '🥦'), tfCount(7, '🥭', 9)]),
     D('সংখ্যা ৬-১০ গণনা করি, পড়ি ও লিখি', 'গুনি, পড়ি, সংখ্যা লিখি: ৬ থেকে ১০।', '', [
@@ -498,7 +500,7 @@
   // ---------- Chapter 12: জ্যামিতি ----------
   const ch12 = [
     D('নানা আকৃতির জিনিস', 'আমাদের চারপাশের জিনিস একেকটি একেক রকম দেখতে। এগুলো নানা আকৃতির।', `<div style="text-align:center">${shp('circle', '#ffb627')} ${shp('tri', '#d9534f')} ${shp('square', '#2e9e5b')}</div>`, [
-      odd([emo('⚽', 76), emo('⚽', 76), emo('📗', 76)], 2, '', 'বই দেখতে চারকোনা, বাকিগুলো গোল।'), odd([shp('tri', '#d9534f'), shp('circle', '#ffb627'), shp('tri', '#3a8fd6')], 1, '', 'গোলটি অন্যরকম।'), objShape('🍊', 'circle', 'পেয়ারা'), objShape('📗', 'rect', 'বই'), shapeCount(['circle', 'tri', 'circle', 'square', 'circle'], 'circle')]),
+      odd([emo('⚽', 76), emo('⚽', 76), emo('📗', 76)], 2, '', 'বই দেখতে চারকোনা, বাকিগুলো গোল।'), odd([shp('tri', '#d9534f'), shp('circle', '#ffb627'), shp('tri', '#3a8fd6')], 1, '', 'গোলটি অন্যরকম।'), objShape('🥥', 'circle', 'ডাব'), objShape('📺', 'rect', 'টিভি'), shapeCount(['circle', 'tri', 'circle', 'square', 'circle'], 'circle')]),
     D('গোল আর তিনকোনা', 'গোল আকৃতির কোনো কোণা নেই, যেমন চাকা। তিনকোনা আকৃতির ৩টি কোণা, যেমন সমুচা।', `<div style="text-align:center">${shp('circle', '#ffb627', 70)} ${shp('tri', '#d9534f', 70)}</div>`, [
       odd([shp('circle', '#3a8fd6'), shp('circle', '#2e9e5b'), shp('square', '#ffb627')], 2), shapePick('circle'), shapePick('tri'), objShape('⚽', 'circle', 'বল'), objShape('🍉', 'tri', 'তরমুজের টুকরা'), shapeCount(['tri', 'circle', 'tri', 'tri', 'square'], 'tri')]),
     D('চারকোনা আকৃতি', 'চারকোনা আকৃতির ৪টি কোণা, যেমন দরজা, বই, জানালা।', `<div style="text-align:center">${shp('square', '#2e9e5b', 70)} ${shp('rect', '#8a5cc2', 70)}</div>`, [
@@ -546,7 +548,7 @@
     decade(9, [pickN([91, 95, 96], 'small'), pickN([94, 93, 99], 'small'), { t: 'fill', q: '১০টি দশ মিলে কত হয়?', vis: `<div class="pile">${bundle(52).repeat(10)}</div>`, parts: ['১০ দশ =', { a: 100 }], h: ['দশ দশ করে গোনো: ১০, ২০, ৩০…', '৯০ এর পরে আরও ১০ মানে একশো।'], ex: '১০ দশ = ১০০ (একশো)।' }]),
     D(REVIEW, '৭১ থেকে ১০০ আবার খেলি।', '', [seq(71, 9, [72, 73, 75, 76, 78]), pvCount(84), between(73), between(95), prevN(77), prevN(96), nextN(80), nextN(99), ord([92, 90, 89, 91], 'asc')]),
     D('সংখ্যা কথায় লিখি (১১-১৫)', '১১ এগারো, ১২ বারো, ১৩ তেরো, ১৪ চৌদ্দ, ১৫ পনেরো।', '', [
-      pickN([14, 15, 13], 'small'), pickN([11, 12, 14], 'small'), wordPick(12), wordPick(11), wordNum(14), wordNum(15), wordNum(13), count(13, '🍬')]),
+      pickN([14, 15, 13], 'small'), pickN([11, 12, 14], 'small'), wordPick(12), wordPick(11), wordNum(14), wordNum(15), wordNum(13), count(13, '✏️')]),
     D('সংখ্যা কথায় লিখি (১৬-২০)', '১৬ ষোলো, ১৭ সতেরো, ১৮ আঠারো, ১৯ উনিশ, ২০ বিশ।', '', [
       wordPick(13), wordPick(15), wordNum(17), wordNum(16), wordNum(19), wordNum(20), wordPick(18), count(19, '🍎')]),
     D(REVIEW + ' ১', 'বড়ো সংখ্যা চিনি, পড়ি, লিখি।', '', mix14(0)),

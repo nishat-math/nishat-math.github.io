@@ -317,9 +317,10 @@
   }
 
   // ---------------- village map ----------------
+  const scenePic = n => { const s = window.ICONS && window.ICONS['__scene_' + n]; return s ? `<div class="scenepic">${s}</div>` : ''; };
   function viewMap() {
     const COLORS = ['#ffcf4d', '#7fd6a0', '#8fd0ff', '#c9a7f5', '#ffa8b8', '#7fe0d4', '#ffb86b', '#b8e07a'];
-    let html = topbar() + `<div class="stack" style="margin-top:16px"><div class="maphead"><h2>গ্রামের পথ</h2></div>
+    let html = topbar() + `<div class="stack" style="margin-top:16px"><div class="maphead"><h2>গ্রামের পথ</h2></div>${scenePic('village')}
       <div class="teach"><div class="face">🏃‍♀️</div><div class="bubble">${isTeacher() ? 'শিক্ষক হিসেবে আপনি যেকোনো অধ্যায় খুলে দেখতে পারবেন।' : 'একটি অধ্যায় শেষ করলে পরের অধ্যায়ের দরজা খুলবে। চলো শুরু করি!'}</div></div><div class="tiles">`;
     CH.forEach((c, i) => {
       const soon = !c.days, open = chUnlocked(c), done = c.days && chDone(c);
@@ -341,7 +342,7 @@
   function viewChapter(c) {
     if (!chUnlocked(c)) return go('map');
     const p = myProg();
-    let html = topbar() + `<div class="stack" style="margin-top:14px"><div class="dayhead"><div class="ttl"><small>অধ্যায় ${bn(c.id)}</small><h2>${c.icon} ${esc(c.title)}</h2></div></div>
+    let html = topbar() + `<div class="stack" style="margin-top:14px"><div class="dayhead"><div class="ttl"><small>অধ্যায় ${bn(c.id)}</small><h2>${c.icon} ${esc(c.title)}</h2></div></div>${scenePic('reading')}
       <p class="muted">প্রতিদিন একটি পাতা। আগের দিনের পাতা যেকোনো সময় আবার খেলা যায়।</p><div class="days">`;
     c.days.forEach((d, i) => {
       const pr = p[`${c.id}-${i}`] || {}, open = dayUnlocked(c, i);
@@ -540,7 +541,7 @@
         st.wrong++; sndNo();
         if (st.wrong >= 3) {
           api.reveal && api.reveal();
-          feedback('show', '👀', `<b>দেখো কীভাবে হয়:</b> ${esc(act.ex || '')}<br><span class="small muted">একটু পরে এর মতো আরেকটি কাজ আবার আসবে।</span>`, act.ex);
+          feedback('show', '✍️', `<b>দেখো কীভাবে হয়:</b> ${esc(act.ex || '')}<br><span class="small muted">একটু পরে এর মতো আরেকটি কাজ আবার আসবে।</span>`, act.ex);
           finish(0, true);
         } else if (st.wrong === 2 && st.hints < hints.length) {
           feedback('hint', '💡', (extra ? esc(extra) + '<br>' : '') + esc(hints[st.hints]), (extra ? extra + '¦' : '') + hints[st.hints]);
@@ -770,7 +771,7 @@
         <p class="small muted">নমুনা তথ্য দিয়ে দেখতে পারবেন ফলাফলের পাতা কেমন দেখায়। নমুনা নামের পাশে "নমুনা" লেখা থাকে।</p>`}</div>`;
     }
     app.innerHTML = topbar() + `<div class="stack" style="margin-top:14px">
-      <h2>📋 শিক্ষকের পাতা</h2>
+      <h2>📋 শিক্ষকের পাতা</h2>${scenePic('office')}
       ${TV.msg ? `<div class="msg err">${esc(TV.msg)}</div>` : ''}
       <div class="row"><div class="tabs">
         <button data-tab="students" class="${TV.tab === 'students' ? 'on' : ''}">শিক্ষার্থী তালিকা</button>
