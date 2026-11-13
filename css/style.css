@@ -154,7 +154,7 @@ a.link { color: var(--lilac-deep); }
 .dots i.on { background: var(--mango); transform: scale(1.25); }
 .dots i.ok { background: var(--leaf); }
 .dots i.bad { background: var(--brick); }
-.dots i.rem { outline: 2px dashed var(--lilac-deep); outline-offset: 2px; }
+.dots i.rem { outline: 2px solid var(--lilac-deep); outline-offset: 2px; }
 
 .teach {
   display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: start;
@@ -180,7 +180,7 @@ a.link { color: var(--lilac-deep); }
 .opt .lbl { font-size: 1.05rem; color: var(--ink-soft); }
 .opt.right { border-color: var(--leaf); background: var(--leaf-soft); }
 .opt.wrong { border-color: var(--brick); background: var(--brick-soft); }
-.opt.showme { border-color: var(--leaf); border-style: dashed; }
+.opt.showme { border-color: var(--leaf); border-style: solid; }
 .shake { animation: shake .4s; }
 @keyframes shake { 20%,60% { transform: translateX(-7px); } 40%,80% { transform: translateX(7px); } }
 .pop { animation: pop .45s; }
@@ -210,7 +210,7 @@ a.link { color: var(--lilac-deep); }
   line-height: 1; border-radius: 12px;
 }
 .scene .it.deco { pointer-events: none; }
-.scene .it.pick { outline: 3px dashed rgba(255,255,255,.9); }
+.scene .it.pick { outline: 3px solid rgba(255,255,255,.9); }
 .scene .it.right { background: rgba(46,158,91,.35); outline: 3px solid var(--leaf); }
 .scene .it.wrong { background: rgba(217,83,79,.35); outline: 3px solid var(--brick); }
 .scene .it.showme { outline: 3px solid var(--leaf); }
@@ -244,12 +244,12 @@ a.link { color: var(--lilac-deep); }
 .ctrls .col .row { justify-content: center; }
 .tray { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; padding: 10px; background: #f6efe6; border-radius: 14px; min-height: 100px; }
 .tray button { border: 0; background: none; padding: 2px; }
-.band { display: flex; align-items: flex-end; gap: 2px; justify-content: center; padding: 8px; border: 3px dashed var(--brick); border-radius: 14px; min-height: 100px; min-width: 140px; }
+.band { display: flex; align-items: flex-end; gap: 2px; justify-content: center; padding: 8px; border: 3px solid var(--brick); border-radius: 14px; min-height: 100px; min-width: 140px; }
 .bundles { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; min-height: 84px; align-items: flex-end; }
 
 /* order */
 .slots { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; min-height: 70px; padding: 8px; background: #f6f9fc; border-radius: 14px; }
-.slot { width: 64px; height: 60px; border: 3px dashed var(--line); border-radius: 14px; display: grid; place-items: center; font-size: 1.5rem; }
+.slot { width: 64px; height: 60px; border: 3px solid var(--line); border-radius: 14px; display: grid; place-items: center; font-size: 1.5rem; }
 .slot.filled { border: 3px solid var(--leaf); background: var(--leaf-soft); }
 .cards { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .ncard { width: 72px; height: 72px; border-radius: 50%; border: 0; font-size: 1.6rem; background: #e5f2ff; box-shadow: 0 4px 0 #b7d4ee; }
@@ -317,7 +317,7 @@ table.data tr.blocked td { color: #9aa3b2; text-decoration: line-through; }
 .plate { flex-direction: column; align-items: center; }
 .patrow { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
 .patc { display: inline-flex; align-items: center; justify-content: center; min-width: 58px; height: 58px; padding: 0 4px; border: 2px solid #b9c9dc; border-radius: 10px; background: var(--paper); font-size: 1.6rem; }
-.patc.q { border-style: dashed; color: var(--brick); font-weight: 700; }
+.patc.q { color: var(--brick); font-weight: 700; }
 .vtab { border-collapse: collapse; margin: 0 auto; font-size: 1.7rem; background: var(--paper); }
 .vtab th { font-size: 1rem; font-weight: 400; padding: 2px 12px; background: #f2f7fc; border: 2px solid #b9c9dc; }
 .vtab td { padding: 2px 14px; text-align: center; min-width: 52px; border-left: 2px solid #b9c9dc; border-right: 2px solid #b9c9dc; }
@@ -392,7 +392,7 @@ body { background: #9fdcff; }
 .opt, .numpad button, .mats button, .ncard { border: 3px solid transparent !important; }
 .opt.right { border-color: var(--leaf) !important; }
 .opt.wrong { border-color: var(--brick) !important; }
-.opt.showme { border: 3px dashed var(--leaf) !important; }
+.opt.showme { border: 3px solid var(--leaf) !important; }
 .card, .topbar, .dayhead, .daycard, .teach { box-shadow: 0 6px 0 var(--shade); }
 .btn, .btn.green, .btn.red, .btn.ghost { box-shadow: 0 6px 0 var(--shade); }
 .btn.small { box-shadow: 0 4px 0 var(--shade); }

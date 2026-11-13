@@ -53,7 +53,7 @@
   };
   function money(v, sz) {
     const [k, f, s] = MONEY[v]; const z = sz || 1;
-    if (k === 'coin') return `<svg width="${46 * z}" height="${46 * z}" viewBox="0 0 46 46" role="img" aria-label="${bn(v)} টাকা"><circle cx="23" cy="23" r="21" fill="${f}" stroke="${s}" stroke-width="2.5"/><circle cx="23" cy="23" r="16" fill="none" stroke="${s}" stroke-width="1" stroke-dasharray="2 2"/><text x="23" y="28" font-size="16" text-anchor="middle" fill="#333">${bn(v)}</text></svg>`;
+    if (k === 'coin') return `<svg width="${46 * z}" height="${46 * z}" viewBox="0 0 46 46" role="img" aria-label="${bn(v)} টাকা"><circle cx="23" cy="23" r="21" fill="${f}" stroke="${s}" stroke-width="2.5"/><circle cx="23" cy="23" r="16" fill="none" stroke="${s}" stroke-width="1"/><text x="23" y="28" font-size="16" text-anchor="middle" fill="#333">${bn(v)}</text></svg>`;
     return `<svg width="${92 * z}" height="${46 * z}" viewBox="0 0 92 46" role="img" aria-label="${bn(v)} টাকা"><rect x="1" y="1" width="90" height="44" rx="5" fill="${f}" stroke="${s}" stroke-width="2"/><circle cx="22" cy="23" r="13" fill="#fff" opacity=".55" stroke="${s}"/><text x="62" y="29" font-size="19" text-anchor="middle" fill="#333">${bn(v)}</text><text x="62" y="41" font-size="8" text-anchor="middle" fill="#333">টাকা</text></svg>`;
   }
   const moneyRow = vs => `<div class="row" style="justify-content:center;gap:6px">${vs.map(v => money(v)).join('')}</div>`;
