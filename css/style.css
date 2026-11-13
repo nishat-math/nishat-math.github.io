@@ -413,3 +413,4 @@ body { background: #9fdcff; }
 .topbar .iconbtn, .topbar .btn.ghost { background: #eef5fc; }
 .bnic { font-size: 32px; line-height: 1; color: #2a3557; font-weight: 700; white-space: nowrap; }
 h2 .bnic { font-size: 1em; color: var(--lilac-deep); }
+.teach .face { font-size: 4.6rem; }

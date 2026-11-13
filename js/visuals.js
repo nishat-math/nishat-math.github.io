@@ -176,6 +176,7 @@
   const _flatten = flatten;
   flatten = function (root) { if (!flatOK) return; try { _flatten(root); } catch (e) { restoreEmoji(); } };
   function watchFlat() {
+    try { if (window.ICONS && window.ICONS.__defs && !document.getElementById('gdefs')) { const w = document.createElement('div'); w.id = 'gdefs'; w.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden'; w.innerHTML = window.ICONS.__defs; document.body.appendChild(w); } } catch (e) { }
     setTimeout(checkFlat, 300); setInterval(checkFlat, 1500);
     flatten(document.body);
     new MutationObserver(ms => ms.forEach(m => { if (m.type === 'characterData') flatText(m.target); else m.addedNodes.forEach(flatten); }))
