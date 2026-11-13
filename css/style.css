@@ -414,3 +414,6 @@ body { background: #9fdcff; }
 .bnic { font-size: 32px; line-height: 1; color: #2a3557; font-weight: 700; white-space: nowrap; }
 h2 .bnic { font-size: 1em; color: var(--lilac-deep); }
 .teach .face { font-size: 4.6rem; }
+.ei:has(svg.person) { width: auto; height: 1.25em; }
+.ei svg.person { width: auto; height: 100%; }
+.mascot .emo { font-size: 150px !important; }
