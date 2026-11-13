@@ -417,3 +417,8 @@ h2 .bnic { font-size: 1em; color: var(--lilac-deep); }
 .ei:has(svg.person) { width: auto; height: 1.25em; }
 .ei svg.person { width: auto; height: 100%; }
 .mascot .emo { font-size: 150px !important; }
+/* Munia's own characters: show people large */
+.teach { grid-template-columns: 96px 1fr !important; align-items: end; }
+.teach .face .ei:has(svg.person) { height: 190px; width: auto; }
+.feedback .fi .ei:has(svg.person) { height: 90px; width: auto; }
+.feedback { align-items: center; }

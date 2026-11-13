@@ -320,7 +320,7 @@
   function viewMap() {
     const COLORS = ['#ffcf4d', '#7fd6a0', '#8fd0ff', '#c9a7f5', '#ffa8b8', '#7fe0d4', '#ffb86b', '#b8e07a'];
     let html = topbar() + `<div class="stack" style="margin-top:16px"><div class="maphead"><h2>গ্রামের পথ</h2></div>
-      <div class="teach"><div class="face">👧</div><div class="bubble">${isTeacher() ? 'শিক্ষক হিসেবে আপনি যেকোনো অধ্যায় খুলে দেখতে পারবেন।' : 'একটি অধ্যায় শেষ করলে পরের অধ্যায়ের দরজা খুলবে। চলো শুরু করি!'}</div></div><div class="tiles">`;
+      <div class="teach"><div class="face">🏃‍♀️</div><div class="bubble">${isTeacher() ? 'শিক্ষক হিসেবে আপনি যেকোনো অধ্যায় খুলে দেখতে পারবেন।' : 'একটি অধ্যায় শেষ করলে পরের অধ্যায়ের দরজা খুলবে। চলো শুরু করি!'}</div></div><div class="tiles">`;
     CH.forEach((c, i) => {
       const soon = !c.days, open = chUnlocked(c), done = c.days && chDone(c);
       const cls = soon || !open ? 'locked' : done ? 'done' : '';
@@ -415,7 +415,7 @@
     if (S.phase === 'intro') {
       const it = S.day.intro || {};
       app.innerHTML = dayFrame(`
-        <div class="teach"><div class="face">👩‍🏫</div><div class="bubble stack"><b>আজ আমরা শিখব</b><p>${esc(it.say || '')}</p>${sayBtn(it.say || '')}</div></div>
+        <div class="teach"><div class="face">${['👩‍🏫', '👨‍🏫', '🧑‍🏫'][(S.c.id + S.d) % 3]}</div><div class="bubble stack"><b>আজ আমরা শিখব</b><p>${esc(it.say || '')}</p>${sayBtn(it.say || '')}</div></div>
         ${it.mats ? matBar() : ''}
         ${it.vis ? `<div class="card">${visSlot(it.vis)}</div>` : ''}
         <p class="muted small">আজ ${bn(S.acts.length)}টি কাজ। কঠিন লাগলে 💡 সাহায্য নিও। ভুল হলে আবার চেষ্টা করা যায়।</p>
