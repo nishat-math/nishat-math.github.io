@@ -186,7 +186,9 @@
 
   function emo(e, size, n) {
     let s = '';
-    for (let i = 0; i < (n || 1); i++) s += `<span class="emo" style="font-size:${size || 48}px">${e}</span>`;
+    // Munia, 17 Nov: pictures bigger for class 1 children (about a third larger everywhere)
+    const px = Math.round((size || 48) * 1.35);
+    for (let i = 0; i < (n || 1); i++) s += `<span class="emo" style="font-size:${px}px">${e}</span>`;
     return s;
   }
 

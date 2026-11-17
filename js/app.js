@@ -187,13 +187,9 @@
   const chById = id => CH.find(c => c.id === id);
   const dayDone = (c, d) => !!(myProg()[`${c.id}-${d}`] || {}).done;
   const chDone = c => c.days && c.days.every((_, i) => dayDone(c, i));
-  function chUnlocked(c) {
-    if (!c.days) return false;
-    if (isTeacher()) return true;
-    for (const b of BUILT) { if (b === c) return true; if (!chDone(b)) return false; }
-    return true;
-  }
-  const dayUnlocked = (c, d) => isTeacher() || (chUnlocked(c) && (d === 0 || dayDone(c, d - 1)));
+  // Munia, 17 Nov: every chapter and every day is open to everyone, so children can move around freely.
+  const chUnlocked = c => !!c.days;
+  const dayUnlocked = (c, d) => chUnlocked(c) && d >= 0 && d < c.days.length;
   const chStars = c => { const p = myProg(); const s = c.days.map((_, i) => (p[`${c.id}-${i}`] || {}).stars || 0); return s.length ? Math.round(s.reduce((a, b) => a + b, 0) / s.length) : 0; };
 
   // ---------------- routing ----------------
@@ -321,7 +317,7 @@
   function viewMap() {
     const COLORS = ['#ffcf4d', '#7fd6a0', '#8fd0ff', '#c9a7f5', '#ffa8b8', '#7fe0d4', '#ffb86b', '#b8e07a'];
     let html = topbar() + `<div class="stack" style="margin-top:16px"><div class="maphead"><h2>গ্রামের পথ</h2></div>${scenePic('village')}
-      <div class="teach"><div class="face">🏃‍♀️</div><div class="bubble">${isTeacher() ? 'শিক্ষক হিসেবে আপনি যেকোনো অধ্যায় খুলে দেখতে পারবেন।' : 'একটি অধ্যায় শেষ করলে পরের অধ্যায়ের দরজা খুলবে। চলো শুরু করি!'}</div></div><div class="tiles">`;
+      <div class="teach"><div class="face">🏃‍♀️</div><div class="bubble">${isTeacher() ? 'শিক্ষক হিসেবে আপনি যেকোনো অধ্যায় খুলে দেখতে পারবেন।' : 'সব অধ্যায় খোলা। যেকোনো অধ্যায়ে যাও, যেকোনো দিনের পাতা খেলো। চলো শুরু করি!'}</div></div><div class="tiles">`;
     CH.forEach((c, i) => {
       const soon = !c.days, open = chUnlocked(c), done = c.days && chDone(c);
       const cls = soon || !open ? 'locked' : done ? 'done' : '';
@@ -342,7 +338,7 @@
   function viewChapter(c) {
     if (!chUnlocked(c)) return go('map');
     const p = myProg();
-    let html = topbar() + `<div class="stack" style="margin-top:14px"><div class="dayhead"><div class="ttl"><small>অধ্যায় ${bn(c.id)}</small><h2>${c.icon} ${esc(c.title)}</h2></div></div>${scenePic('reading')}
+    let html = topbar() + `<div class="stack" style="margin-top:14px"><div class="dayhead"><div class="ttl"><small>অধ্যায় ${bn(c.id)}</small><h2>${c.icon} ${esc(c.title)}</h2></div></div>${scenePic(['reading', 'class', 'kites', 'fish', 'soccer', 'cricket', 'field', 'pond'][(c.id - 1) % 8])}
       <p class="muted">প্রতিদিন একটি পাতা। আগের দিনের পাতা যেকোনো সময় আবার খেলা যায়।</p><div class="days">`;
     c.days.forEach((d, i) => {
       const pr = p[`${c.id}-${i}`] || {}, open = dayUnlocked(c, i);
@@ -408,7 +404,7 @@
     nb.onclick = () => {
       const { c, d } = S;
       if (dayUnlocked(c, d + 1)) go(`ch${c.id}-d${d + 2}`);
-      else toast('আজকের পাতা শেষ করলে পরের দিন খুলবে।');
+      else toast('এটাই এই অধ্যায়ের শেষ দিন।');
     };
   }
   function render() {
@@ -473,11 +469,11 @@
     const nextCh = BUILT[BUILT.indexOf(c) + 1];
     const msg = stars === 3 ? 'অসাধারণ! তুমি আজকের সব কাজ খুব ভালো করেছ।' : stars === 2 ? 'খুব ভালো! আরেকবার খেললে আরও তারা পাবে।' : 'তুমি চেষ্টা করেছ, এটাই সবচেয়ে জরুরি! আবার খেলে দেখো, এবার আরও সহজ লাগবে।';
     app.innerHTML = dayFrame(`<div class="card stack summary">
-      <div class="big pop">${stars === 3 ? '🏆' : stars === 2 ? '🌟' : '🌱'}</div>
+      ${scenePic(['field', 'kites', 'soccer', 'cricket', 'fish'][(c.id + d) % 5])}<div class="big pop">${stars === 3 ? '🏆' : stars === 2 ? '🌟' : '🌱'}</div>
       <div class="stars" style="font-size:2.4rem">${starStr(stars)}</div>
       <div class="row" style="justify-content:center"><p>${msg}</p>${sayBtn(msg)}</div>
       <p class="muted small">প্রথম চেষ্টায় সঠিক: ${bn(first)}/${bn(S.res.length)} · সাহায্য নিয়েছ: ${bn(hints)} বার · সময়: ${bn(Math.max(1, Math.round(secs / 60)))} মিনিট</p>
-      ${chFinished && !next ? `<div class="msg ok">🎉 অধ্যায় ${bn(c.id)} শেষ! ${nextCh ? `এবার অধ্যায় ${bn(nextCh.id)} খুলে গেছে।` : ''}</div>` : ''}
+      ${chFinished && !next ? `<div class="msg ok">🎉 অধ্যায় ${bn(c.id)} শেষ! ${nextCh ? `এবার অধ্যায় ${bn(nextCh.id)} খেলে দেখো।` : ''}</div>` : ''}
       ${isTeacher() ? '<p class="small muted">শিক্ষক মোডে খেলা ফলাফলে যোগ হয় না।</p>' : ''}
     </div>
     <div class="daynav">
@@ -533,7 +529,7 @@
         const stars = st.wrong === 0 && st.hints === 0 ? 3 : st.wrong + st.hints <= 2 ? 2 : 1;
         sndOk();
         const pr = pickR(PRAISE);
-        feedback('good', '🎉', `<b>${pr}</b> ${act.ex ? esc(act.ex) : ''}`, act.ex ? pr + '¦' + act.ex : pr);
+        feedback('good', ['🎉', '🤸', '🙌', '💃', '👯', '🤗', '😊'][Math.floor(Math.random() * 7)], `<b>${pr}</b> ${act.ex ? esc(act.ex) : ''}`, act.ex ? pr + '¦' + act.ex : pr);
         finish(stars, st.wrong >= 2);
       },
       wrong(extra) {
@@ -541,14 +537,14 @@
         st.wrong++; sndNo();
         if (st.wrong >= 3) {
           api.reveal && api.reveal();
-          feedback('show', '✍️', `<b>দেখো কীভাবে হয়:</b> ${esc(act.ex || '')}<br><span class="small muted">একটু পরে এর মতো আরেকটি কাজ আবার আসবে।</span>`, act.ex);
+          feedback('show', '👉', `<b>দেখো কীভাবে হয়:</b> ${esc(act.ex || '')}<br><span class="small muted">একটু পরে এর মতো আরেকটি কাজ আবার আসবে।</span>`, act.ex);
           finish(0, true);
         } else if (st.wrong === 2 && st.hints < hints.length) {
           feedback('hint', '💡', (extra ? esc(extra) + '<br>' : '') + esc(hints[st.hints]), (extra ? extra + '¦' : '') + hints[st.hints]);
           st.hints++; if (st.hints >= hints.length) hintB.disabled = true;
         } else {
           const tm = extra || pickR(TRY);
-          feedback('try', '🤔', esc(tm), tm);
+          feedback('try', ['🤔', '🙇', '🧎'][Math.floor(Math.random() * 3)], esc(tm), tm);
           if (st.hints < hints.length) hintB.classList.add('glow');
         }
       },

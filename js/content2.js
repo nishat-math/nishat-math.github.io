@@ -167,7 +167,7 @@
   const addSt = (a, b, s) => ({ ...add(a, b, '|', s, 'কাঠি গুনে যোগফল বের করি।'), vis: two(sticks(a), sticks(b)), rem: () => addSt(b, a, s) });
   const addNL = (a, b, s) => ({ t: 'fill', s: s || '', q: 'সংখ্যারেখায় লাফ দিয়ে যোগ করি।', vis: nline(a, b, a + b > 10 ? 20 : 10), parts: [bn(a), '+', bn(b), '=', { a: a + b }], h: [`হলুদ বিন্দু ${bn(a)} এ আছে। সামনে ${bn(b)}টি লাফ দাও।`, 'সবুজ লাফগুলো গোনো, শেষে কোন সংখ্যায় থামলে?'], ex: `${bn(a)} থেকে ${bn(b)} লাফ দিলে ${bn(a + b)}।`, rem: () => addNL(a - 1 > 0 ? a - 1 : a + 1, b, s) });
   const HAND = ['✊', '☝️', '✌️', '🤟', '🖖', '✋'];
-  const hands = n => `<span style="display:inline-flex;gap:2px;flex-wrap:nowrap">${n <= 5 ? emo(HAND[n], 70) : emo('✋', 60) + emo(HAND[n - 5], 60)}</span>`;
+  const hands = n => `<span style="display:inline-flex;gap:2px;flex-wrap:nowrap">${n <= 5 ? emo(HAND[n], 70) : emo('✋', 40) + emo(HAND[n - 5], 40)}</span>`;
   const addF = (a, b, s) => ({ t: 'fill', s: s || '', q: 'হাতের আঙুল গুনে যোগ করি।', vis: two(`<div class="fing">${bn(a)} আঙুল</div>${hands(a)}`, `<div class="fing">${bn(b)} আঙুল</div>${hands(b)}`), parts: [bn(a), '+', bn(b), '=', { a: a + b }], h: [`এক হাতে ${bn(a)}টি আঙুল তোলো।`, `এবার আরও ${bn(b)}টি আঙুল তোলো। মোট কয়টি আঙুল উঠল?`], ex: `${bn(a)} + ${bn(b)} = ${bn(a + b)}`, rem: () => addF(b, a, s) });
   function sumPick(target, exprs, s) {
     return {
